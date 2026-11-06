@@ -64,54 +64,55 @@ To achieve 1NF, teaching skills, learning skills, exchange requests, and feedbac
 
 The following functional dependencies are identified from the proposed application requirements:
 
-- student_id → full_name, email, password_hash, department, year_of_study
+- student_id → full_name, email, password_hash, department, year_of_study, created_at
 - skill_id → skill_name, category, description
 - request_id → requester_id, recipient_id, request_type, requested_skill_id, offered_skill_id, status, created_at
 - feedback_id → request_id, learner_id, rating, comment, created_at
 
 The initial decomposition into atomic records can be represented using:
 
-STUDENT(
-student_id,
-full_name,
-email,
-password_hash,
-department,
-year_of_study
-)
+1. STUDENT(
+   student_id,
+   full_name,
+   email,
+   password_hash,
+   department,
+   year_of_study,
+   created_at
+   )
 
-SKILL(
-skill_id,
-skill_name,
-category,
-description
-)
+2. SKILL(
+   skill_id,
+   skill_name,
+   category,
+   description
+   )
 
-STUDENT_SKILL(
-student_id,
-skill_id,
-skill_type
-)
+3. STUDENT_SKILL(
+   student_id,
+   skill_id,
+   skill_type
+   )
 
-EXCHANGE_REQUEST(
-request_id,
-requester_id,
-recipient_id,
-request_type,
-requested_skill_id,
-offered_skill_id,
-status,
-created_at
-)
+4. EXCHANGE_REQUEST(
+   request_id,
+   requester_id,
+   recipient_id,
+   request_type,
+   requested_skill_id,
+   offered_skill_id,
+   status,
+   created_at
+   )
 
-FEEDBACK(
-feedback_id,
-request_id,
-learner_id,
-rating,
-comment,
-created_at
-)
+5. FEEDBACK(
+   feedback_id,
+   request_id,
+   learner_id,
+   rating,
+   comment,
+   created_at
+   )
 
 In STUDENT_SKILL, skill_type indicates whether the student wants to teach or learn the skill.
 
@@ -197,12 +198,13 @@ full_name,
 email,
 password_hash,
 department,
-year_of_study
+year_of_study,
+created_at
 )
 
 Functional dependency:
 
-student_id → full_name, email, password_hash, department, year_of_study
+student_id → full_name, email, password_hash, department, year_of_study, created_at
 
 Assumptions:
 
@@ -289,7 +291,8 @@ The combination of request_id and learner_id is unique because a learner can sub
    email,
    password_hash,
    department,
-   year_of_study
+   year_of_study,
+   created_at
    )
 
 2. SKILL(
@@ -341,23 +344,23 @@ BCNF is considered here as an additional normalization check.
 
 ## 7. Primary Keys and Foreign Keys
 
-| Relation | Primary Key | Foreign Keys |
-|---|---|---|
-| STUDENT | student_id | None |
-| SKILL | skill_id | None |
-| STUDENT_SKILL | (student_id, skill_id, skill_type) | student_id, skill_id |
-| EXCHANGE_REQUEST | request_id | requester_id, recipient_id, requested_skill_id, offered_skill_id |
-| FEEDBACK | feedback_id | request_id, learner_id |
+| Relation         | Primary Key                        | Foreign Keys                                                     |
+| ---------------- | ---------------------------------- | ---------------------------------------------------------------- |
+| STUDENT          | student_id                         | None                                                             |
+| SKILL            | skill_id                           | None                                                             |
+| STUDENT_SKILL    | (student_id, skill_id, skill_type) | student_id, skill_id                                             |
+| EXCHANGE_REQUEST | request_id                         | requester_id, recipient_id, requested_skill_id, offered_skill_id |
+| FEEDBACK         | feedback_id                        | request_id, learner_id                                           |
 
 ## 8. Normalization Summary
 
-| Normal Form | Changes Made |
-|---|---|
-| UNF | Multiple skills, requests, and feedback records may be stored together. |
-| 1NF | Repeating groups are removed and values are made atomic. |
-| 2NF | Partial dependencies are removed by separating SKILL and STUDENT_SKILL. |
-| 3NF | Relations are checked for transitive dependencies. |
-| BCNF | Determinants are checked to ensure they are superkeys. |
+| Normal Form | Changes Made                                                            |
+| ----------- | ----------------------------------------------------------------------- |
+| UNF         | Multiple skills, requests, and feedback records may be stored together. |
+| 1NF         | Repeating groups are removed and values are made atomic.                |
+| 2NF         | Partial dependencies are removed by separating SKILL and STUDENT_SKILL. |
+| 3NF         | Relations are checked for transitive dependencies.                      |
+| BCNF        | Determinants are checked to ensure they are superkeys.                  |
 
 ## 9. Conclusion
 
