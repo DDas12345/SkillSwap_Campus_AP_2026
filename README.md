@@ -1,105 +1,77 @@
-# SkillSwap Campus — AP DBMS Project
+## CP3 – Application Queries & Database Operations
 
-## 1. Project Overview
+### Overview
 
-**SkillSwap Campus** is a student skill-exchange platform designed to connect college students who want to learn new skills with students who can teach them.
+Completed CP3 by implementing and testing the SQL queries required for the SkillSwap Campus application.
 
-The platform allows students to share their knowledge, discover learning opportunities, and collaborate with other students through skill exchanges.
+### 1. Application Queries
 
-### Key Features
+Created `dbms/04_queries.sql`, containing 24 application queries:
 
-- Student registration and login.
-- Student profiles.
-- Teaching and learning skill listings.
-- Search and discovery of skills.
-- One-way and mutual skill-exchange requests.
-- Learner feedback after completed exchanges.
+| Query Type | Query IDs | Count |
+|---|---|---:|
+| READ | R1–R13 | 13 |
+| WRITE | W1–W11 | 11 |
+| **Total** | | **24** |
 
-## 2. Technology Stack
+**READ Operations**
+- Student login lookup and profile retrieval.
+- Browse and search available skills.
+- View students' teaching and learning skills.
+- Find potential teachers and skill matches.
+- View incoming and outgoing exchange requests.
+- Retrieve exchange request details.
+- View feedback and calculate average feedback submitted by a student.
 
-- **Database:** PostgreSQL
-- **Database Design:** Entity Relationship Diagram (ERD)
-- **Backend:** Node.js and Express
-- **ORM:** Prisma
-- **Frontend:** React, JavaScript and CSS
+**WRITE Operations**
+- Register a new student.
+- Update student profile information.
+- Add skills to the skill catalogue.
+- Remove skills from student profiles.
+- Create LEARN and MUTUAL exchange requests.
+- Accept, reject, and cancel exchange requests.
+- Mark accepted exchanges as completed.
+- Submit feedback for completed exchanges.
 
-## 3. AP DBMS Project Structure
+### 2. SQL Features Used
 
-```text
-SkillSwap_Campus_AP_2026/
-│
-├── README.md
-│
-└── dbms/
-    ├── 01_normalization.md
-    ├── 02_er_diagram.png
-    ├── 03_schema.sql
-    ├── 04_queries.sql       (CP3)
-    ├── 05_query_timings.md  (CP4)
-    └── plans/               (CP4 execution plans)
-```
+The implementation uses:
+- `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
+- `INNER JOIN` and `LEFT JOIN`.
+- Subqueries and `EXISTS` conditions.
+- `ILIKE` for case-insensitive searches.
+- `RETURNING` to retrieve inserted or updated records.
+- `ON CONFLICT` for duplicate handling.
+- Parameterized queries using `$1`, `$2`, etc.
+- Database constraints to maintain data integrity.
 
-## 4. Database Design
+### 3. Testing and Verification
 
-The database currently consists of five main tables:
+Tested all 24 query operations against the local PostgreSQL database using sample records.
 
-| Table | Purpose |
+The test dataset included:
+- 4 students.
+- 4 skills.
+- Student teaching and learning preferences.
+- LEARN and MUTUAL exchange requests.
+- Exchange status transitions.
+- Feedback submissions.
+
+Verified the READ and WRITE operations, including request acceptance, rejection, cancellation conditions, completion, and feedback submission.
+
+### 4. Important Query Correction
+
+Updated R13 to calculate the average feedback rating **submitted by a student**.
+
+The current database schema stores `learner_id` in the feedback table but does not store a separate rated-student or recipient identifier. Therefore, the current schema supports calculating submitted feedback, not reliably calculating ratings received.
+
+### 5. Files Added or Updated
+
+| File | Purpose |
 |---|---|
-| STUDENT | Stores student registration and profile information. |
-| SKILL | Stores available skills and their categories. |
-| STUDENT_SKILL | Connects students with the skills they teach or want to learn. |
-| EXCHANGE_REQUEST | Stores one-way and mutual skill-exchange requests. |
-| FEEDBACK | Stores learner feedback and ratings for completed exchanges. |
+| `dbms/04_queries.sql` | Contains all 24 application SQL queries |
+| `README.md` | Documents CP3 implementation, SQL features, and testing |
 
-## 5. Checkpoint Progress
+### CP3 Completion
 
-| Checkpoint | Deliverable | Status |
-|---|---|---|
-| CP1 | Database Normalization | ✅ Completed |
-| CP2 | ER Diagram | ✅ Completed |
-| CP2 | PostgreSQL Schema | ✅ Completed |
-| CP3 | SQL Queries | ⏳ Upcoming |
-| CP4 | Query Timings and Execution Plans | ⏳ Upcoming |
-
-## 6. Database Implementation
-
-The PostgreSQL database used for local development is:
-
-`skillswap_campus_ap`
-
-The five database tables have been successfully created and verified using PostgreSQL 18.6.
-
-The schema includes:
-
-- Primary key constraints.
-- Foreign key constraints.
-- Unique constraints.
-- CHECK constraints.
-- Composite primary keys.
-- Default timestamps.
-
-## 7. Development Updates
-
-### November 2026
-
-**CP1 — Database Normalization**
-- Documented database normalization from UNF to BCNF.
-- Identified the final five database relations.
-
-**CP2 — Database Design and Implementation**
-- Created the Entity Relationship Diagram.
-- Defined entities, attributes, primary keys, foreign keys and relationships.
-- Implemented the PostgreSQL schema.
-- Created the database and successfully executed all five CREATE TABLE statements.
-- Verified database tables, columns and constraints.
-
-Further updates will be documented as development progresses.
-
-## 8. Repository
-
-**GitHub Repository:**  
-[SkillSwap Campus — AP 2026](https://github.com/DDas12345/SkillSwap_Campus_AP_2026)
-
----
-
-*This README documents the progress and database implementation of the SkillSwap Campus Application Project (AP).* 
+The CP3 application-query implementation and manual database testing have been completed for the SkillSwap Campus project.
