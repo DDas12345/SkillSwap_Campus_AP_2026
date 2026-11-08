@@ -1,0 +1,39 @@
+========== RUN 1 ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=966) (actual time=0.003..0.003 rows=1.00 loops=1)
+   Index Cond: (student_id = 1)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=98
+ Planning Time: 0.174 ms
+ Execution Time: 0.019 ms
+(8 rows)
+
+========== RUN 2 ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=966) (actual time=0.003..0.003 rows=1.00 loops=1)
+   Index Cond: (student_id = 1)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=98
+ Planning Time: 0.174 ms
+ Execution Time: 0.019 ms
+(8 rows)
+
+========== RUN 3 ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=966) (actual time=0.003..0.003 rows=1.00 loops=1)
+   Index Cond: (student_id = 1)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=98
+ Planning Time: 0.182 ms
+ Execution Time: 0.019 ms
+(8 rows)
+

@@ -1,0 +1,93 @@
+========== RUN 1 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=39.83..39.83 rows=1 width=798) (actual time=0.423..0.423 rows=1.00 loops=1)
+   Sort Key: st.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=12
+   ->  Nested Loop  (cost=0.44..39.82 rows=1 width=798) (actual time=0.405..0.405 rows=1.00 loops=1)
+         Buffers: shared hit=9
+         ->  Nested Loop  (cost=0.29..31.64 rows=1 width=446) (actual time=0.400..0.401 rows=1.00 loops=1)
+               Buffers: shared hit=7
+               ->  Index Only Scan using student_skill_pkey on student_skill ss  (cost=0.15..23.16 rows=1 width=8) (actual time=0.395..0.395 rows=1.00 loops=1)
+                     Index Cond: ((skill_id = 1) AND (skill_type = 'TEACH'::text))
+                     Heap Fetches: 1
+                     Index Searches: 1
+                     Buffers: shared hit=5
+               ->  Index Scan using student_pkey on student st  (cost=0.14..8.16 rows=1 width=442) (actual time=0.004..0.004 rows=1.00 loops=1)
+                     Index Cond: (student_id = ss.student_id)
+                     Filter: (student_id <> 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.004..0.004 rows=1.00 loops=1)
+               Index Cond: (skill_id = 1)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.406 ms
+ Execution Time: 0.449 ms
+(26 rows)
+
+========== RUN 2 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=39.83..39.83 rows=1 width=798) (actual time=0.037..0.037 rows=1.00 loops=1)
+   Sort Key: st.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=12
+   ->  Nested Loop  (cost=0.44..39.82 rows=1 width=798) (actual time=0.021..0.021 rows=1.00 loops=1)
+         Buffers: shared hit=9
+         ->  Nested Loop  (cost=0.29..31.64 rows=1 width=446) (actual time=0.017..0.018 rows=1.00 loops=1)
+               Buffers: shared hit=7
+               ->  Index Only Scan using student_skill_pkey on student_skill ss  (cost=0.15..23.16 rows=1 width=8) (actual time=0.014..0.014 rows=1.00 loops=1)
+                     Index Cond: ((skill_id = 1) AND (skill_type = 'TEACH'::text))
+                     Heap Fetches: 1
+                     Index Searches: 1
+                     Buffers: shared hit=5
+               ->  Index Scan using student_pkey on student st  (cost=0.14..8.16 rows=1 width=442) (actual time=0.003..0.003 rows=1.00 loops=1)
+                     Index Cond: (student_id = ss.student_id)
+                     Filter: (student_id <> 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.003..0.003 rows=1.00 loops=1)
+               Index Cond: (skill_id = 1)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.394 ms
+ Execution Time: 0.060 ms
+(26 rows)
+
+========== RUN 3 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=39.83..39.83 rows=1 width=798) (actual time=0.038..0.038 rows=1.00 loops=1)
+   Sort Key: st.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=12
+   ->  Nested Loop  (cost=0.44..39.82 rows=1 width=798) (actual time=0.022..0.022 rows=1.00 loops=1)
+         Buffers: shared hit=9
+         ->  Nested Loop  (cost=0.29..31.64 rows=1 width=446) (actual time=0.018..0.018 rows=1.00 loops=1)
+               Buffers: shared hit=7
+               ->  Index Only Scan using student_skill_pkey on student_skill ss  (cost=0.15..23.16 rows=1 width=8) (actual time=0.014..0.014 rows=1.00 loops=1)
+                     Index Cond: ((skill_id = 1) AND (skill_type = 'TEACH'::text))
+                     Heap Fetches: 1
+                     Index Searches: 1
+                     Buffers: shared hit=5
+               ->  Index Scan using student_pkey on student st  (cost=0.14..8.16 rows=1 width=442) (actual time=0.003..0.003 rows=1.00 loops=1)
+                     Index Cond: (student_id = ss.student_id)
+                     Filter: (student_id <> 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.003..0.004 rows=1.00 loops=1)
+               Index Cond: (skill_id = 1)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.403 ms
+ Execution Time: 0.063 ms
+(26 rows)
+

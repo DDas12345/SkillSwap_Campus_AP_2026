@@ -1,0 +1,123 @@
+========== RUN 1 ==========
+                                                                            QUERY PLAN                                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=34.19..34.20 rows=1 width=972) (actual time=0.034..0.035 rows=3.00 loops=1)
+   Sort Key: er.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=24
+   ->  Nested Loop Left Join  (cost=0.57..34.18 rows=1 width=972) (actual time=0.016..0.021 rows=3.00 loops=1)
+         Buffers: shared hit=21
+         ->  Nested Loop  (cost=0.43..25.94 rows=1 width=758) (actual time=0.015..0.019 rows=3.00 loops=1)
+               Buffers: shared hit=19
+               ->  Nested Loop  (cost=0.28..17.69 rows=1 width=544) (actual time=0.011..0.014 rows=3.00 loops=1)
+                     Buffers: shared hit=13
+                     ->  Nested Loop  (cost=0.14..9.52 rows=1 width=326) (actual time=0.009..0.011 rows=3.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Seq Scan on exchange_request er  (cost=0.00..1.05 rows=1 width=108) (actual time=0.006..0.006 rows=3.00 loops=1)
+                                 Filter: (recipient_id = 2)
+                                 Rows Removed by Filter: 1
+                                 Buffers: shared hit=1
+                           ->  Index Scan using student_pkey on student requester  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                                 Index Cond: (student_id = er.requester_id)
+                                 Index Searches: 3
+                                 Buffers: shared hit=6
+                     ->  Index Scan using student_pkey on student recipient  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                           Index Cond: (student_id = 2)
+                           Index Searches: 3
+                           Buffers: shared hit=6
+               ->  Index Scan using skill_pkey on skill requested  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                     Index Cond: (skill_id = er.requested_skill_id)
+                     Index Searches: 3
+                     Buffers: shared hit=6
+         ->  Index Scan using skill_pkey on skill offered  (cost=0.14..8.16 rows=1 width=222) (actual time=0.000..0.000 rows=0.33 loops=3)
+               Index Cond: (skill_id = er.offered_skill_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=277
+ Planning Time: 0.437 ms
+ Execution Time: 0.066 ms
+(36 rows)
+
+========== RUN 2 ==========
+                                                                            QUERY PLAN                                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=34.19..34.20 rows=1 width=972) (actual time=0.031..0.031 rows=3.00 loops=1)
+   Sort Key: er.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=24
+   ->  Nested Loop Left Join  (cost=0.57..34.18 rows=1 width=972) (actual time=0.014..0.019 rows=3.00 loops=1)
+         Buffers: shared hit=21
+         ->  Nested Loop  (cost=0.43..25.94 rows=1 width=758) (actual time=0.013..0.017 rows=3.00 loops=1)
+               Buffers: shared hit=19
+               ->  Nested Loop  (cost=0.28..17.69 rows=1 width=544) (actual time=0.009..0.012 rows=3.00 loops=1)
+                     Buffers: shared hit=13
+                     ->  Nested Loop  (cost=0.14..9.52 rows=1 width=326) (actual time=0.007..0.009 rows=3.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Seq Scan on exchange_request er  (cost=0.00..1.05 rows=1 width=108) (actual time=0.004..0.004 rows=3.00 loops=1)
+                                 Filter: (recipient_id = 2)
+                                 Rows Removed by Filter: 1
+                                 Buffers: shared hit=1
+                           ->  Index Scan using student_pkey on student requester  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                                 Index Cond: (student_id = er.requester_id)
+                                 Index Searches: 3
+                                 Buffers: shared hit=6
+                     ->  Index Scan using student_pkey on student recipient  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                           Index Cond: (student_id = 2)
+                           Index Searches: 3
+                           Buffers: shared hit=6
+               ->  Index Scan using skill_pkey on skill requested  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                     Index Cond: (skill_id = er.requested_skill_id)
+                     Index Searches: 3
+                     Buffers: shared hit=6
+         ->  Index Scan using skill_pkey on skill offered  (cost=0.14..8.16 rows=1 width=222) (actual time=0.000..0.000 rows=0.33 loops=3)
+               Index Cond: (skill_id = er.offered_skill_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=277
+ Planning Time: 0.415 ms
+ Execution Time: 0.062 ms
+(36 rows)
+
+========== RUN 3 ==========
+                                                                            QUERY PLAN                                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=34.19..34.20 rows=1 width=972) (actual time=0.033..0.034 rows=3.00 loops=1)
+   Sort Key: er.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=24
+   ->  Nested Loop Left Join  (cost=0.57..34.18 rows=1 width=972) (actual time=0.015..0.020 rows=3.00 loops=1)
+         Buffers: shared hit=21
+         ->  Nested Loop  (cost=0.43..25.94 rows=1 width=758) (actual time=0.014..0.018 rows=3.00 loops=1)
+               Buffers: shared hit=19
+               ->  Nested Loop  (cost=0.28..17.69 rows=1 width=544) (actual time=0.010..0.014 rows=3.00 loops=1)
+                     Buffers: shared hit=13
+                     ->  Nested Loop  (cost=0.14..9.52 rows=1 width=326) (actual time=0.008..0.010 rows=3.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Seq Scan on exchange_request er  (cost=0.00..1.05 rows=1 width=108) (actual time=0.005..0.005 rows=3.00 loops=1)
+                                 Filter: (recipient_id = 2)
+                                 Rows Removed by Filter: 1
+                                 Buffers: shared hit=1
+                           ->  Index Scan using student_pkey on student requester  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                                 Index Cond: (student_id = er.requester_id)
+                                 Index Searches: 3
+                                 Buffers: shared hit=6
+                     ->  Index Scan using student_pkey on student recipient  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                           Index Cond: (student_id = 2)
+                           Index Searches: 3
+                           Buffers: shared hit=6
+               ->  Index Scan using skill_pkey on skill requested  (cost=0.14..8.16 rows=1 width=222) (actual time=0.001..0.001 rows=1.00 loops=3)
+                     Index Cond: (skill_id = er.requested_skill_id)
+                     Index Searches: 3
+                     Buffers: shared hit=6
+         ->  Index Scan using skill_pkey on skill offered  (cost=0.14..8.16 rows=1 width=222) (actual time=0.000..0.000 rows=0.33 loops=3)
+               Index Cond: (skill_id = er.offered_skill_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=277
+ Planning Time: 0.416 ms
+ Execution Time: 0.065 ms
+(36 rows)
+

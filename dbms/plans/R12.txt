@@ -1,0 +1,87 @@
+========== RUN 1 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=23.41..23.43 rows=5 width=272) (actual time=0.069..0.070 rows=1.00 loops=1)
+   Sort Key: f.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=12.72..23.36 rows=5 width=272) (actual time=0.054..0.055 rows=1.00 loops=1)
+         Hash Cond: (st.student_id = f.learner_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on student st  (cost=0.00..10.50 rows=50 width=222) (actual time=0.017..0.017 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=12.66..12.66 rows=5 width=54) (actual time=0.031..0.032 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on feedback f  (cost=4.19..12.66 rows=5 width=54) (actual time=0.029..0.029 rows=1.00 loops=1)
+                     Recheck Cond: (request_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on feedback_request_id_learner_id_key  (cost=0.00..4.19 rows=5 width=0) (actual time=0.021..0.021 rows=1.00 loops=1)
+                           Index Cond: (request_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=248
+ Planning Time: 0.590 ms
+ Execution Time: 0.096 ms
+(24 rows)
+
+========== RUN 2 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=23.41..23.43 rows=5 width=272) (actual time=0.030..0.031 rows=1.00 loops=1)
+   Sort Key: f.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=12.72..23.36 rows=5 width=272) (actual time=0.017..0.018 rows=1.00 loops=1)
+         Hash Cond: (st.student_id = f.learner_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on student st  (cost=0.00..10.50 rows=50 width=222) (actual time=0.003..0.003 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=12.66..12.66 rows=5 width=54) (actual time=0.009..0.010 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on feedback f  (cost=4.19..12.66 rows=5 width=54) (actual time=0.006..0.007 rows=1.00 loops=1)
+                     Recheck Cond: (request_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on feedback_request_id_learner_id_key  (cost=0.00..4.19 rows=5 width=0) (actual time=0.002..0.002 rows=1.00 loops=1)
+                           Index Cond: (request_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=248
+ Planning Time: 0.330 ms
+ Execution Time: 0.056 ms
+(24 rows)
+
+========== RUN 3 ==========
+                                                                           QUERY PLAN                                                                           
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=23.41..23.43 rows=5 width=272) (actual time=0.030..0.030 rows=1.00 loops=1)
+   Sort Key: f.created_at DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=12.72..23.36 rows=5 width=272) (actual time=0.016..0.017 rows=1.00 loops=1)
+         Hash Cond: (st.student_id = f.learner_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on student st  (cost=0.00..10.50 rows=50 width=222) (actual time=0.003..0.003 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=12.66..12.66 rows=5 width=54) (actual time=0.009..0.009 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on feedback f  (cost=4.19..12.66 rows=5 width=54) (actual time=0.006..0.006 rows=1.00 loops=1)
+                     Recheck Cond: (request_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on feedback_request_id_learner_id_key  (cost=0.00..4.19 rows=5 width=0) (actual time=0.002..0.002 rows=1.00 loops=1)
+                           Index Cond: (request_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=248
+ Planning Time: 0.522 ms
+ Execution Time: 0.055 ms
+(24 rows)
+

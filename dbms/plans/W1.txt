@@ -1,0 +1,39 @@
+========== RUN 1 (transaction rolled back) ==========
+                                             QUERY PLAN                                              
+-----------------------------------------------------------------------------------------------------
+ Insert on student  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.463..0.464 rows=1.00 loops=1)
+   Buffers: shared hit=66
+   ->  Result  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.026..0.026 rows=1.00 loops=1)
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.043 ms
+ Execution Time: 0.477 ms
+(8 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                             QUERY PLAN                                              
+-----------------------------------------------------------------------------------------------------
+ Insert on student  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.095..0.096 rows=1.00 loops=1)
+   Buffers: shared hit=66
+   ->  Result  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.018..0.018 rows=1.00 loops=1)
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.040 ms
+ Execution Time: 0.107 ms
+(8 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                             QUERY PLAN                                              
+-----------------------------------------------------------------------------------------------------
+ Insert on student  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.090..0.090 rows=1.00 loops=1)
+   Buffers: shared hit=66
+   ->  Result  (cost=0.00..0.01 rows=1 width=1482) (actual time=0.018..0.018 rows=1.00 loops=1)
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.040 ms
+ Execution Time: 0.102 ms
+(8 rows)
+

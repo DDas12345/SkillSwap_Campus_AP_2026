@@ -1,0 +1,54 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                     QUERY PLAN                                                     
+--------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.028..0.029 rows=1.00 loops=1)
+   Buffers: shared hit=6
+   ->  Seq Scan on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.003..0.003 rows=1.00 loops=1)
+         Filter: ((request_id = 50) AND (recipient_id = 2) AND ((status)::text = 'PENDING'::text))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=16
+ Planning Time: 0.036 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.015 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.010 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.008 calls=1
+ Execution Time: 0.094 ms
+(13 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                     QUERY PLAN                                                     
+--------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.027..0.027 rows=1.00 loops=1)
+   Buffers: shared hit=6
+   ->  Seq Scan on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.003..0.003 rows=1.00 loops=1)
+         Filter: ((request_id = 51) AND (recipient_id = 2) AND ((status)::text = 'PENDING'::text))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=16
+ Planning Time: 0.033 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.013 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.008 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.007 calls=1
+ Execution Time: 0.086 ms
+(13 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                     QUERY PLAN                                                     
+--------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.026..0.027 rows=1.00 loops=1)
+   Buffers: shared hit=6
+   ->  Seq Scan on exchange_request  (cost=0.00..1.07 rows=1 width=48) (actual time=0.003..0.003 rows=1.00 loops=1)
+         Filter: ((request_id = 52) AND (recipient_id = 2) AND ((status)::text = 'PENDING'::text))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=16
+ Planning Time: 0.035 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.013 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.008 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.007 calls=1
+ Execution Time: 0.087 ms
+(13 rows)
+

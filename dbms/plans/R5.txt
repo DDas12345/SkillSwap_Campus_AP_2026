@@ -1,0 +1,87 @@
+========== RUN 1 ==========
+                                                                   QUERY PLAN                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=26.49..26.51 rows=6 width=402) (actual time=0.039..0.039 rows=1.00 loops=1)
+   Sort Key: ss.skill_type, s.skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=13.74..26.41 rows=6 width=402) (actual time=0.020..0.021 rows=1.00 loops=1)
+         Hash Cond: (s.skill_id = ss.skill_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on skill s  (cost=0.00..11.90 rows=190 width=360) (actual time=0.002..0.003 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=13.67..13.67 rows=6 width=46) (actual time=0.012..0.013 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on student_skill ss  (cost=4.20..13.67 rows=6 width=46) (actual time=0.009..0.009 rows=1.00 loops=1)
+                     Recheck Cond: (student_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on student_skill_pkey  (cost=0.00..4.20 rows=6 width=0) (actual time=0.005..0.005 rows=1.00 loops=1)
+                           Index Cond: (student_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=210
+ Planning Time: 0.512 ms
+ Execution Time: 0.065 ms
+(24 rows)
+
+========== RUN 2 ==========
+                                                                   QUERY PLAN                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=26.49..26.51 rows=6 width=402) (actual time=0.044..0.044 rows=1.00 loops=1)
+   Sort Key: ss.skill_type, s.skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=13.74..26.41 rows=6 width=402) (actual time=0.025..0.026 rows=1.00 loops=1)
+         Hash Cond: (s.skill_id = ss.skill_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on skill s  (cost=0.00..11.90 rows=190 width=360) (actual time=0.003..0.003 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=13.67..13.67 rows=6 width=46) (actual time=0.018..0.018 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on student_skill ss  (cost=4.20..13.67 rows=6 width=46) (actual time=0.015..0.015 rows=1.00 loops=1)
+                     Recheck Cond: (student_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on student_skill_pkey  (cost=0.00..4.20 rows=6 width=0) (actual time=0.010..0.010 rows=1.00 loops=1)
+                           Index Cond: (student_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=210
+ Planning Time: 0.291 ms
+ Execution Time: 0.067 ms
+(24 rows)
+
+========== RUN 3 ==========
+                                                                   QUERY PLAN                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=26.49..26.51 rows=6 width=402) (actual time=0.033..0.034 rows=1.00 loops=1)
+   Sort Key: ss.skill_type, s.skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=6
+   ->  Hash Join  (cost=13.74..26.41 rows=6 width=402) (actual time=0.015..0.016 rows=1.00 loops=1)
+         Hash Cond: (s.skill_id = ss.skill_id)
+         Buffers: shared hit=3
+         ->  Seq Scan on skill s  (cost=0.00..11.90 rows=190 width=360) (actual time=0.002..0.003 rows=4.00 loops=1)
+               Buffers: shared hit=1
+         ->  Hash  (cost=13.67..13.67 rows=6 width=46) (actual time=0.008..0.009 rows=1.00 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               Buffers: shared hit=2
+               ->  Bitmap Heap Scan on student_skill ss  (cost=4.20..13.67 rows=6 width=46) (actual time=0.005..0.005 rows=1.00 loops=1)
+                     Recheck Cond: (student_id = 1)
+                     Heap Blocks: exact=1
+                     Buffers: shared hit=2
+                     ->  Bitmap Index Scan on student_skill_pkey  (cost=0.00..4.20 rows=6 width=0) (actual time=0.002..0.002 rows=1.00 loops=1)
+                           Index Cond: (student_id = 1)
+                           Index Searches: 1
+                           Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=210
+ Planning Time: 0.279 ms
+ Execution Time: 0.057 ms
+(24 rows)
+

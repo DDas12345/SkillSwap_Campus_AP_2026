@@ -1,0 +1,45 @@
+========== RUN 1 ==========
+                                                 QUERY PLAN                                                  
+-------------------------------------------------------------------------------------------------------------
+ Sort  (cost=19.09..19.57 rows=190 width=392) (actual time=0.030..0.030 rows=4.00 loops=1)
+   Sort Key: category, skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=4
+   ->  Seq Scan on skill  (cost=0.00..11.90 rows=190 width=392) (actual time=0.003..0.003 rows=4.00 loops=1)
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=103
+ Planning Time: 0.227 ms
+ Execution Time: 0.039 ms
+(10 rows)
+
+========== RUN 2 ==========
+                                                 QUERY PLAN                                                  
+-------------------------------------------------------------------------------------------------------------
+ Sort  (cost=19.09..19.57 rows=190 width=392) (actual time=0.022..0.023 rows=4.00 loops=1)
+   Sort Key: category, skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=4
+   ->  Seq Scan on skill  (cost=0.00..11.90 rows=190 width=392) (actual time=0.003..0.003 rows=4.00 loops=1)
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=103
+ Planning Time: 0.178 ms
+ Execution Time: 0.031 ms
+(10 rows)
+
+========== RUN 3 ==========
+                                                 QUERY PLAN                                                  
+-------------------------------------------------------------------------------------------------------------
+ Sort  (cost=19.09..19.57 rows=190 width=392) (actual time=0.022..0.022 rows=4.00 loops=1)
+   Sort Key: category, skill_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=4
+   ->  Seq Scan on skill  (cost=0.00..11.90 rows=190 width=392) (actual time=0.002..0.003 rows=4.00 loops=1)
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=103
+ Planning Time: 0.168 ms
+ Execution Time: 0.032 ms
+(10 rows)
+

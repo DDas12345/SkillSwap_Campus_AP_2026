@@ -1,0 +1,126 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                                            QUERY PLAN                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on exchange_request  (cost=32.70..32.71 rows=1 width=108) (actual time=0.120..0.120 rows=1.00 loops=1)
+   Buffers: shared hit=46
+   InitPlan 1
+     ->  Index Only Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=0) (actual time=0.007..0.007 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 3) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 2
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_1  (cost=0.15..8.17 rows=1 width=0) (actual time=0.002..0.002 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 3) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 3
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_2  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 1) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 4
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_3  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 1) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   ->  Result  (cost=0.00..0.01 rows=1 width=108) (actual time=0.034..0.034 rows=1.00 loops=1)
+         One-Time Filter: ((InitPlan 1).col1 AND (InitPlan 2).col1 AND (InitPlan 3).col1 AND (InitPlan 4).col1)
+         Buffers: shared hit=21
+ Planning:
+   Buffers: shared hit=81
+ Planning Time: 0.223 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.151 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.019 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.092 calls=1
+ Trigger for constraint exchange_request_offered_skill_id_fkey: time=0.017 calls=1
+ Execution Time: 0.428 ms
+(37 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                                            QUERY PLAN                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on exchange_request  (cost=32.70..32.71 rows=1 width=108) (actual time=0.117..0.118 rows=1.00 loops=1)
+   Buffers: shared hit=46
+   InitPlan 1
+     ->  Index Only Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=0) (actual time=0.007..0.007 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 3) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 2
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_1  (cost=0.15..8.17 rows=1 width=0) (actual time=0.002..0.002 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 3) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 3
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_2  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 1) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 4
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_3  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 1) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   ->  Result  (cost=0.00..0.01 rows=1 width=108) (actual time=0.034..0.034 rows=1.00 loops=1)
+         One-Time Filter: ((InitPlan 1).col1 AND (InitPlan 2).col1 AND (InitPlan 3).col1 AND (InitPlan 4).col1)
+         Buffers: shared hit=21
+ Planning:
+   Buffers: shared hit=81
+ Planning Time: 0.214 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.170 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.023 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.096 calls=1
+ Trigger for constraint exchange_request_offered_skill_id_fkey: time=0.017 calls=1
+ Execution Time: 0.448 ms
+(37 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                                            QUERY PLAN                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on exchange_request  (cost=32.70..32.71 rows=1 width=108) (actual time=0.119..0.120 rows=1.00 loops=1)
+   Buffers: shared hit=46
+   InitPlan 1
+     ->  Index Only Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=0) (actual time=0.007..0.007 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 3) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 2
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_1  (cost=0.15..8.17 rows=1 width=0) (actual time=0.001..0.001 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 3) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 3
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_2  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 2) AND (skill_id = 1) AND (skill_type = 'TEACH'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   InitPlan 4
+     ->  Index Only Scan using student_skill_pkey on student_skill student_skill_3  (cost=0.15..8.17 rows=1 width=0) (actual time=0.003..0.003 rows=1.00 loops=1)
+           Index Cond: ((student_id = 3) AND (skill_id = 1) AND (skill_type = 'LEARN'::text))
+           Heap Fetches: 1
+           Index Searches: 1
+           Buffers: shared hit=2
+   ->  Result  (cost=0.00..0.01 rows=1 width=108) (actual time=0.034..0.034 rows=1.00 loops=1)
+         One-Time Filter: ((InitPlan 1).col1 AND (InitPlan 2).col1 AND (InitPlan 3).col1 AND (InitPlan 4).col1)
+         Buffers: shared hit=21
+ Planning:
+   Buffers: shared hit=81
+ Planning Time: 0.219 ms
+ Trigger for constraint exchange_request_requester_id_fkey: time=0.147 calls=1
+ Trigger for constraint exchange_request_recipient_id_fkey: time=0.018 calls=1
+ Trigger for constraint exchange_request_requested_skill_id_fkey: time=0.088 calls=1
+ Trigger for constraint exchange_request_offered_skill_id_fkey: time=0.016 calls=1
+ Execution Time: 0.415 ms
+(37 rows)
+

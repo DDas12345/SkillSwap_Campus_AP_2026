@@ -1,0 +1,135 @@
+========== RUN 1 ==========
+                                                                                  QUERY PLAN                                                                                   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=40.91..40.92 rows=1 width=804) (actual time=0.050..0.050 rows=1.00 loops=1)
+   Sort Key: s.skill_name, teacher.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=16
+   ->  Nested Loop  (cost=0.73..40.90 rows=1 width=804) (actual time=0.029..0.030 rows=1.00 loops=1)
+         Join Filter: (teacher.student_id <> learner.student_id)
+         Buffers: shared hit=13
+         ->  Nested Loop  (cost=0.59..36.06 rows=1 width=586) (actual time=0.026..0.027 rows=1.00 loops=1)
+               Buffers: shared hit=11
+               ->  Nested Loop  (cost=0.45..27.90 rows=1 width=368) (actual time=0.023..0.023 rows=1.00 loops=1)
+                     Join Filter: (wanted.skill_id = offered.skill_id)
+                     Buffers: shared hit=9
+                     ->  Nested Loop  (cost=0.30..16.47 rows=1 width=368) (actual time=0.015..0.015 rows=1.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Index Only Scan using student_skill_pkey on student_skill wanted  (cost=0.15..8.22 rows=1 width=8) (actual time=0.011..0.012 rows=1.00 loops=1)
+                                 Index Cond: ((student_id = 1) AND (skill_type = 'LEARN'::text))
+                                 Heap Fetches: 1
+                                 Index Searches: 1
+                                 Buffers: shared hit=5
+                           ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                 Index Cond: (skill_id = wanted.skill_id)
+                                 Index Searches: 1
+                                 Buffers: shared hit=2
+                     ->  Index Only Scan using student_skill_pkey on student_skill offered  (cost=0.15..11.42 rows=1 width=8) (actual time=0.007..0.008 rows=1.00 loops=1)
+                           Index Cond: ((skill_id = s.skill_id) AND (skill_type = 'TEACH'::text))
+                           Heap Fetches: 1
+                           Index Searches: 1
+                           Buffers: shared hit=2
+               ->  Index Scan using student_pkey on student learner  (cost=0.14..8.16 rows=1 width=222) (actual time=0.003..0.003 rows=1.00 loops=1)
+                     Index Cond: (student_id = 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using student_pkey on student teacher  (cost=0.14..4.82 rows=1 width=222) (actual time=0.002..0.002 rows=1.00 loops=1)
+               Index Cond: (student_id = offered.student_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.526 ms
+ Execution Time: 0.080 ms
+(40 rows)
+
+========== RUN 2 ==========
+                                                                                  QUERY PLAN                                                                                   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=40.91..40.92 rows=1 width=804) (actual time=0.045..0.046 rows=1.00 loops=1)
+   Sort Key: s.skill_name, teacher.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=16
+   ->  Nested Loop  (cost=0.73..40.90 rows=1 width=804) (actual time=0.028..0.029 rows=1.00 loops=1)
+         Join Filter: (teacher.student_id <> learner.student_id)
+         Buffers: shared hit=13
+         ->  Nested Loop  (cost=0.59..36.06 rows=1 width=586) (actual time=0.026..0.026 rows=1.00 loops=1)
+               Buffers: shared hit=11
+               ->  Nested Loop  (cost=0.45..27.90 rows=1 width=368) (actual time=0.022..0.023 rows=1.00 loops=1)
+                     Join Filter: (wanted.skill_id = offered.skill_id)
+                     Buffers: shared hit=9
+                     ->  Nested Loop  (cost=0.30..16.47 rows=1 width=368) (actual time=0.014..0.015 rows=1.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Index Only Scan using student_skill_pkey on student_skill wanted  (cost=0.15..8.22 rows=1 width=8) (actual time=0.011..0.011 rows=1.00 loops=1)
+                                 Index Cond: ((student_id = 1) AND (skill_type = 'LEARN'::text))
+                                 Heap Fetches: 1
+                                 Index Searches: 1
+                                 Buffers: shared hit=5
+                           ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                 Index Cond: (skill_id = wanted.skill_id)
+                                 Index Searches: 1
+                                 Buffers: shared hit=2
+                     ->  Index Only Scan using student_skill_pkey on student_skill offered  (cost=0.15..11.42 rows=1 width=8) (actual time=0.007..0.007 rows=1.00 loops=1)
+                           Index Cond: ((skill_id = s.skill_id) AND (skill_type = 'TEACH'::text))
+                           Heap Fetches: 1
+                           Index Searches: 1
+                           Buffers: shared hit=2
+               ->  Index Scan using student_pkey on student learner  (cost=0.14..8.16 rows=1 width=222) (actual time=0.003..0.003 rows=1.00 loops=1)
+                     Index Cond: (student_id = 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using student_pkey on student teacher  (cost=0.14..4.82 rows=1 width=222) (actual time=0.002..0.002 rows=1.00 loops=1)
+               Index Cond: (student_id = offered.student_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.522 ms
+ Execution Time: 0.076 ms
+(40 rows)
+
+========== RUN 3 ==========
+                                                                                  QUERY PLAN                                                                                   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=40.91..40.92 rows=1 width=804) (actual time=0.047..0.047 rows=1.00 loops=1)
+   Sort Key: s.skill_name, teacher.full_name
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=16
+   ->  Nested Loop  (cost=0.73..40.90 rows=1 width=804) (actual time=0.030..0.031 rows=1.00 loops=1)
+         Join Filter: (teacher.student_id <> learner.student_id)
+         Buffers: shared hit=13
+         ->  Nested Loop  (cost=0.59..36.06 rows=1 width=586) (actual time=0.027..0.027 rows=1.00 loops=1)
+               Buffers: shared hit=11
+               ->  Nested Loop  (cost=0.45..27.90 rows=1 width=368) (actual time=0.023..0.024 rows=1.00 loops=1)
+                     Join Filter: (wanted.skill_id = offered.skill_id)
+                     Buffers: shared hit=9
+                     ->  Nested Loop  (cost=0.30..16.47 rows=1 width=368) (actual time=0.015..0.015 rows=1.00 loops=1)
+                           Buffers: shared hit=7
+                           ->  Index Only Scan using student_skill_pkey on student_skill wanted  (cost=0.15..8.22 rows=1 width=8) (actual time=0.011..0.012 rows=1.00 loops=1)
+                                 Index Cond: ((student_id = 1) AND (skill_type = 'LEARN'::text))
+                                 Heap Fetches: 1
+                                 Index Searches: 1
+                                 Buffers: shared hit=5
+                           ->  Index Scan using skill_pkey on skill s  (cost=0.14..8.16 rows=1 width=360) (actual time=0.002..0.002 rows=1.00 loops=1)
+                                 Index Cond: (skill_id = wanted.skill_id)
+                                 Index Searches: 1
+                                 Buffers: shared hit=2
+                     ->  Index Only Scan using student_skill_pkey on student_skill offered  (cost=0.15..11.42 rows=1 width=8) (actual time=0.008..0.008 rows=1.00 loops=1)
+                           Index Cond: ((skill_id = s.skill_id) AND (skill_type = 'TEACH'::text))
+                           Heap Fetches: 1
+                           Index Searches: 1
+                           Buffers: shared hit=2
+               ->  Index Scan using student_pkey on student learner  (cost=0.14..8.16 rows=1 width=222) (actual time=0.003..0.003 rows=1.00 loops=1)
+                     Index Cond: (student_id = 1)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+         ->  Index Scan using student_pkey on student teacher  (cost=0.14..4.82 rows=1 width=222) (actual time=0.002..0.002 rows=1.00 loops=1)
+               Index Cond: (student_id = offered.student_id)
+               Index Searches: 1
+               Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=255
+ Planning Time: 0.533 ms
+ Execution Time: 0.085 ms
+(40 rows)
+

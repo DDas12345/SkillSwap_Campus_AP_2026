@@ -1,0 +1,39 @@
+========== RUN 1 ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_email_key on student  (cost=0.14..8.16 rows=1 width=1474) (actual time=0.014..0.015 rows=1.00 loops=1)
+   Index Cond: ((email)::text = 'alice.test@example.com'::text)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=89
+ Planning Time: 0.397 ms
+ Execution Time: 0.039 ms
+(8 rows)
+
+========== RUN 2 ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_email_key on student  (cost=0.14..8.16 rows=1 width=1474) (actual time=0.006..0.006 rows=1.00 loops=1)
+   Index Cond: ((email)::text = 'alice.test@example.com'::text)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=89
+ Planning Time: 0.185 ms
+ Execution Time: 0.022 ms
+(8 rows)
+
+========== RUN 3 ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using student_email_key on student  (cost=0.14..8.16 rows=1 width=1474) (actual time=0.008..0.008 rows=1.00 loops=1)
+   Index Cond: ((email)::text = 'alice.test@example.com'::text)
+   Index Searches: 1
+   Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=89
+ Planning Time: 0.182 ms
+ Execution Time: 0.026 ms
+(8 rows)
+

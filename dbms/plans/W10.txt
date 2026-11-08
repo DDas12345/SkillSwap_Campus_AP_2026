@@ -1,0 +1,45 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.082..0.082 rows=1.00 loops=1)
+   Buffers: shared hit=24
+   ->  Seq Scan on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.008..0.008 rows=1.00 loops=1)
+         Filter: ((request_id = 2) AND ((status)::text = 'ACCEPTED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 3
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=70
+ Planning Time: 0.159 ms
+ Execution Time: 0.122 ms
+(10 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.077..0.078 rows=1.00 loops=1)
+   Buffers: shared hit=24
+   ->  Seq Scan on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.009..0.009 rows=1.00 loops=1)
+         Filter: ((request_id = 2) AND ((status)::text = 'ACCEPTED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 3
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=70
+ Planning Time: 0.159 ms
+ Execution Time: 0.127 ms
+(10 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                        QUERY PLAN                                                         
+---------------------------------------------------------------------------------------------------------------------------
+ Update on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.072..0.072 rows=1.00 loops=1)
+   Buffers: shared hit=24
+   ->  Seq Scan on exchange_request  (cost=0.00..1.08 rows=1 width=48) (actual time=0.008..0.009 rows=1.00 loops=1)
+         Filter: ((request_id = 2) AND ((status)::text = 'ACCEPTED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 3
+         Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=70
+ Planning Time: 0.164 ms
+ Execution Time: 0.112 ms
+(10 rows)
+

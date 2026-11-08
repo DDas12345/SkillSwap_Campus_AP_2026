@@ -1,0 +1,45 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Delete on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.016..0.016 rows=1.00 loops=1)
+   Buffers: shared hit=4
+   ->  Index Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+         Index Cond: ((student_id = 2) AND (skill_id = 1) AND ((skill_type)::text = 'TEACH'::text))
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=79
+ Planning Time: 0.163 ms
+ Execution Time: 0.065 ms
+(10 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Delete on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.017..0.017 rows=1.00 loops=1)
+   Buffers: shared hit=4
+   ->  Index Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.007..0.007 rows=1.00 loops=1)
+         Index Cond: ((student_id = 2) AND (skill_id = 1) AND ((skill_type)::text = 'TEACH'::text))
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=79
+ Planning Time: 0.181 ms
+ Execution Time: 0.072 ms
+(10 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Delete on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.016..0.016 rows=1.00 loops=1)
+   Buffers: shared hit=4
+   ->  Index Scan using student_skill_pkey on student_skill  (cost=0.15..8.17 rows=1 width=6) (actual time=0.006..0.007 rows=1.00 loops=1)
+         Index Cond: ((student_id = 2) AND (skill_id = 1) AND ((skill_type)::text = 'TEACH'::text))
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=79
+ Planning Time: 0.151 ms
+ Execution Time: 0.063 ms
+(10 rows)
+

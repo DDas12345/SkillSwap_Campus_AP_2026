@@ -1,0 +1,45 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Update on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.071..0.071 rows=1.00 loops=1)
+   Buffers: shared hit=20
+   ->  Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.006..0.007 rows=1.00 loops=1)
+         Index Cond: (student_id = 4)
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=92
+ Planning Time: 0.194 ms
+ Execution Time: 0.345 ms
+(10 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Update on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.064..0.064 rows=1.00 loops=1)
+   Buffers: shared hit=20
+   ->  Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.007..0.007 rows=1.00 loops=1)
+         Index Cond: (student_id = 4)
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=92
+ Planning Time: 0.180 ms
+ Execution Time: 0.105 ms
+(10 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Update on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.054..0.055 rows=1.00 loops=1)
+   Buffers: shared hit=20
+   ->  Index Scan using student_pkey on student  (cost=0.14..8.16 rows=1 width=444) (actual time=0.007..0.007 rows=1.00 loops=1)
+         Index Cond: (student_id = 4)
+         Index Searches: 1
+         Buffers: shared hit=2
+ Planning:
+   Buffers: shared hit=92
+ Planning Time: 0.176 ms
+ Execution Time: 0.096 ms
+(10 rows)
+

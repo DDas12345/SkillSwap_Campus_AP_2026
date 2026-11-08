@@ -1,0 +1,54 @@
+========== RUN 1 (transaction rolled back) ==========
+                                               QUERY PLAN                                                
+---------------------------------------------------------------------------------------------------------
+ Insert on student_skill  (cost=0.00..0.01 rows=1 width=46) (actual time=0.108..0.109 rows=1.00 loops=1)
+   Conflict Resolution: NOTHING
+   Conflict Arbiter Indexes: student_skill_pkey
+   Tuples Inserted: 1
+   Conflicting Tuples: 0
+   Buffers: shared hit=26
+   ->  Result  (cost=0.00..0.01 rows=1 width=46) (actual time=0.002..0.002 rows=1.00 loops=1)
+ Planning:
+   Buffers: shared hit=44
+ Planning Time: 0.064 ms
+ Trigger for constraint student_skill_student_id_fkey: time=0.265 calls=1
+ Trigger for constraint student_skill_skill_id_fkey: time=0.223 calls=1
+ Execution Time: 0.609 ms
+(13 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                               QUERY PLAN                                                
+---------------------------------------------------------------------------------------------------------
+ Insert on student_skill  (cost=0.00..0.01 rows=1 width=46) (actual time=0.086..0.087 rows=1.00 loops=1)
+   Conflict Resolution: NOTHING
+   Conflict Arbiter Indexes: student_skill_pkey
+   Tuples Inserted: 1
+   Conflicting Tuples: 0
+   Buffers: shared hit=26
+   ->  Result  (cost=0.00..0.01 rows=1 width=46) (actual time=0.002..0.002 rows=1.00 loops=1)
+ Planning:
+   Buffers: shared hit=44
+ Planning Time: 0.060 ms
+ Trigger for constraint student_skill_student_id_fkey: time=0.231 calls=1
+ Trigger for constraint student_skill_skill_id_fkey: time=0.097 calls=1
+ Execution Time: 0.426 ms
+(13 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                               QUERY PLAN                                                
+---------------------------------------------------------------------------------------------------------
+ Insert on student_skill  (cost=0.00..0.01 rows=1 width=46) (actual time=0.087..0.087 rows=1.00 loops=1)
+   Conflict Resolution: NOTHING
+   Conflict Arbiter Indexes: student_skill_pkey
+   Tuples Inserted: 1
+   Conflicting Tuples: 0
+   Buffers: shared hit=26
+   ->  Result  (cost=0.00..0.01 rows=1 width=46) (actual time=0.003..0.003 rows=1.00 loops=1)
+ Planning:
+   Buffers: shared hit=44
+ Planning Time: 0.058 ms
+ Trigger for constraint student_skill_student_id_fkey: time=0.221 calls=1
+ Trigger for constraint student_skill_skill_id_fkey: time=0.095 calls=1
+ Execution Time: 0.415 ms
+(13 rows)
+

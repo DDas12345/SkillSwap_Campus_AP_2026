@@ -1,0 +1,51 @@
+========== RUN 1 (transaction rolled back) ==========
+                                                         QUERY PLAN                                                          
+-----------------------------------------------------------------------------------------------------------------------------
+ Insert on feedback  (cost=0.00..1.08 rows=1 width=54) (actual time=0.096..0.097 rows=1.00 loops=1)
+   Buffers: shared hit=51
+   ->  Seq Scan on exchange_request er  (cost=0.00..1.08 rows=1 width=54) (actual time=0.019..0.020 rows=1.00 loops=1)
+         Filter: ((request_id = 56) AND ((status)::text = 'COMPLETED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=23
+ Planning Time: 0.060 ms
+ Trigger for constraint feedback_request_id_fkey: time=0.025 calls=1
+ Trigger for constraint feedback_learner_id_fkey: time=0.017 calls=1
+ Execution Time: 0.146 ms
+(12 rows)
+
+========== RUN 2 (transaction rolled back) ==========
+                                                         QUERY PLAN                                                          
+-----------------------------------------------------------------------------------------------------------------------------
+ Insert on feedback  (cost=0.00..1.08 rows=1 width=54) (actual time=0.059..0.060 rows=1.00 loops=1)
+   Buffers: shared hit=51
+   ->  Seq Scan on exchange_request er  (cost=0.00..1.08 rows=1 width=54) (actual time=0.012..0.012 rows=1.00 loops=1)
+         Filter: ((request_id = 57) AND ((status)::text = 'COMPLETED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=23
+ Planning Time: 0.051 ms
+ Trigger for constraint feedback_request_id_fkey: time=0.024 calls=1
+ Trigger for constraint feedback_learner_id_fkey: time=0.018 calls=1
+ Execution Time: 0.108 ms
+(12 rows)
+
+========== RUN 3 (transaction rolled back) ==========
+                                                         QUERY PLAN                                                          
+-----------------------------------------------------------------------------------------------------------------------------
+ Insert on feedback  (cost=0.00..1.08 rows=1 width=54) (actual time=0.056..0.056 rows=1.00 loops=1)
+   Buffers: shared hit=51
+   ->  Seq Scan on exchange_request er  (cost=0.00..1.08 rows=1 width=54) (actual time=0.012..0.012 rows=1.00 loops=1)
+         Filter: ((request_id = 58) AND ((status)::text = 'COMPLETED'::text) AND ((requester_id = 1) OR (recipient_id = 1)))
+         Rows Removed by Filter: 4
+         Buffers: shared hit=12
+ Planning:
+   Buffers: shared hit=23
+ Planning Time: 0.046 ms
+ Trigger for constraint feedback_request_id_fkey: time=0.022 calls=1
+ Trigger for constraint feedback_learner_id_fkey: time=0.017 calls=1
+ Execution Time: 0.101 ms
+(12 rows)
+
