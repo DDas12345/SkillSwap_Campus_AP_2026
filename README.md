@@ -61,7 +61,7 @@ The ER diagram is available at `dbms/02_er_diagram.png`.
 | CP2 | ER Diagram | ✅ Completed |
 | CP2 | PostgreSQL Schema | ✅ Completed |
 | CP3 | Application SQL Queries (13 READ + 11 WRITE) | ✅ Completed |
-| CP4 | Query Timings and Execution Plans | ⏳ Upcoming |
+| CP4 | Query Timings and Execution Plans | ✅ Completed |
 
 ## 6. Database Implementation
 
@@ -106,6 +106,15 @@ The schema definition is maintained in `dbms/03_schema.sql`.
 - Verified request acceptance, rejection, prevention of cancellation for a non-pending request, exchange completion, and feedback submission.
 
 **R13 clarification:** The current `feedback` table stores `learner_id` but does not store a separate rated-student identifier. Therefore, R13 calculates the average feedback rating **submitted by** a student. It does not claim to calculate ratings received by a student, which the current schema cannot reliably identify.
+
+### CP4 — Query Timings and Execution Plans
+- Executed all 24 application queries (13 READ and 11 WRITE) three times each using `EXPLAIN (ANALYZE, BUFFERS)`.
+- Recorded the three individual execution times, arithmetic average, and scan type in `dbms/05_query_timings.md`.
+- Saved one raw plan file per query in `dbms/plans/` (24 plan files, each containing three runs).
+- Executed all WRITE benchmarks within transactions and rolled them back. W7–W9 used temporary pending requests; W11 used a temporary completed request, all inside the same rollback transaction.
+- Added `dbms/run_ap_benchmark.sh` to reproduce the benchmark.
+
+**Measurement scope:** Timings were collected on the local `skillswap_campus_ap` database with the small test dataset (4 students, 4 skills, 7 student-skill associations, 4 exchange requests, and 2 feedback records). They are execution measurements for this test dataset, not large-scale performance claims.
 
 Further updates will be documented as development progresses.
 
